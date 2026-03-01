@@ -3,8 +3,8 @@ import { RSVPStatus } from '../enums/rsvp-status';
 
 @Entity()
 export class Guest {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   firstName: string;
@@ -36,6 +36,6 @@ export class Guest {
   @Column()
   plusOne: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   plusOneName: string;
 }

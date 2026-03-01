@@ -27,16 +27,16 @@ export class GuestsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.guestsService.findOne(+id);
+    return this.guestsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGuestDto: UpdateGuestDto) {
-    return this.guestsService.update(+id, updateGuestDto);
+    return this.guestsService.update(id, updateGuestDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.guestsService.remove(+id);
+    return this.guestsService.remove(id);
   }
 }

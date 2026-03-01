@@ -21,7 +21,7 @@ export class GuestsService {
     return this.guestsRepository.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const guest = await this.guestsRepository.findOne({ where: { id } });
     if (!guest) {
       throw new NotFoundException('Guest not found');
@@ -29,13 +29,13 @@ export class GuestsService {
     return guest;
   }
 
-  async update(id: number, updateGuestDto: UpdateGuestDto) {
+  async update(id: string, updateGuestDto: UpdateGuestDto) {
     const guest = await this.guestsRepository.findOne({ where: { id } });
 
     return this.guestsRepository.save({ ...guest, ...updateGuestDto });
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const guest = await this.findOne(id);
 
     return this.guestsRepository.remove(guest);
