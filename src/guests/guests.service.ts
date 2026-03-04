@@ -14,6 +14,7 @@ export class GuestsService {
 
   create(createGuestDto: CreateGuestDto) {
     const guest = this.guestsRepository.create(createGuestDto);
+
     return this.guestsRepository.save(guest);
   }
 
@@ -23,14 +24,13 @@ export class GuestsService {
 
   async findOne(id: string) {
     const guest = await this.guestsRepository.findOne({ where: { id } });
-    if (!guest) {
-      throw new NotFoundException('Guest not found');
-    }
+    if (!guest) throw new NotFoundException(`Guest whith #${id} not found`);
+
     return guest;
   }
 
   async update(id: string, updateGuestDto: UpdateGuestDto) {
-    const guest = await this.guestsRepository.findOne({ where: { id } });
+    const guest = await this.findOne(id);
 
     return this.guestsRepository.save({ ...guest, ...updateGuestDto });
   }
