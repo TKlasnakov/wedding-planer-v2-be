@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { RSVPStatus } from '../enums/rsvp-status';
+import { Table } from '../../tables/entities/table.entity';
 
 @Entity()
 export class Guest {
@@ -37,5 +44,15 @@ export class Guest {
   plusOne: boolean;
 
   @Column({ nullable: true })
-  plusOneName: string;
+  plusOneName?: string;
+
+  @Column({ nullable: true })
+  tableId: string | null;
+
+  @ManyToOne(() => Table, (table) => table.guest, {
+    nullable: true,
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn({ name: 'tableId' })
+  table: Table;
 }

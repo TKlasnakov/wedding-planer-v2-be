@@ -11,5 +11,6 @@ export class CreateGuestDto {
   kidsUnder14: number;
   notes: string;
   plusOne: boolean;
+  tableId?: string | null;
   plusOneName?: string;
 }
