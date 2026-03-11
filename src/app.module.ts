@@ -17,7 +17,6 @@ import { BudgetModule } from './budget/budget.module';
       database: process.env.DATABASE_NAME,
       ssl: { rejectUnauthorized: false },
       autoLoadEntities: true,
-      synchronize: true,
     }),
     GuestsModule,
     TablesModule,
